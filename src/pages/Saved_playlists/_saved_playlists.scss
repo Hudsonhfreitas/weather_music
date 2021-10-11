@@ -1,0 +1,102 @@
+.savedPlaylists {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            color: rgb(13, 202, 101);
+            font-size: 3rem;
+            margin-top: 2rem;
+        }
+        span {
+            margin-top: 2rem;
+            font-size: 1.8rem;
+        }
+        .playlists {
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 580px;
+            .playlist-item {
+                background-color: rgba(70, 69, 69, 0.925);
+                padding: 1.5rem;
+                border-radius: 5px;
+                width: 100%;
+                &:not(:first-child) {
+                    margin-top: 1rem;
+                }
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    button {
+                        cursor: pointer;
+                        background: transparent;
+                        border:none;
+                        &#delete{
+                            svg {
+                                pointer-events: none;
+                                path {
+                                    fill: rgb(241, 94, 94); 
+                                }
+                            }
+                        }
+                        &#expand {
+                            font-size: 2rem;
+                            svg {
+                                pointer-events: none;
+                            }
+                        }
+                    }
+                }
+                ul {
+                    li {
+                        font-size: 1.2rem;
+                        max-height: 0;
+                        opacity: 0;
+                    }
+                }
+                &.active {
+                    ul {
+                        margin-top: 1rem;
+                        li {
+                            max-height: unset;
+                            opacity: 1;
+                            &:not(:first-child) {
+                                margin-top: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 440px) {
+        .container {
+            .playlists {
+                .playlist-item {
+                    .title {
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 340px) {
+        .container {
+            .playlists {
+                .playlist-item {
+                    padding: 1rem;
+                    .title {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

@@ -5,8 +5,8 @@ const Header = () => {
         <header className='container'>
             <span>Weather Music</span>
             <nav>
-                <NavLink to="/" >Home</ NavLink>
-                <NavLink to="/saved_playlists" activeClassName='active'>Suas playlists</ NavLink>
+                <NavLink to="/" className={({ isActive }) => isActive? "active": ''}>Home</ NavLink>
+                <NavLink to="/saved_playlists" className={({ isActive }) => isActive? "active": ''}>Suas playlists</ NavLink>
             </nav>
         </header>
     )

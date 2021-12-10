@@ -5,7 +5,7 @@ export default function Playlist_Item({item}) {
     <li className='playlist_item' key={item.id}>
         <div className="item">
             <div className="cover">
-                <img src={item.images.coverart}></img>
+                <img src={item.images.coverart} alt={item.title}></img>
             </div>
             <div className="info">
                 <h4>{item.title}</h4>

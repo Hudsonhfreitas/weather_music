@@ -34,7 +34,7 @@ export default function Playlist() {
                 <>
                     <ul className="list">
                         {playlist.map( item => (
-                           <Playlist_Item item={item}/>
+                           <Playlist_Item key={item.id} item={item}/>
                         ))}
                     </ul>
                     <div className="save">

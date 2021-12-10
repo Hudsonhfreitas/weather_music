@@ -429,7 +429,7 @@ header .active {
 }
 
 .playlist_item .item .cover img {
-  height: 75px;
+  height: 100%;
   width: 75px;
 }
 

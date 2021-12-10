@@ -1,11 +1,11 @@
-import Routes from "./routes";
+import Routing from "./routes";
 import GlobalProvider from "./context/Global";
 import './css/index.css';
 
 function App() {
   return (
     <GlobalProvider>
-      <Routes/>
+      <Routing />
     </GlobalProvider>
   );
 }

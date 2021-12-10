@@ -1,49 +1,42 @@
 import { useContext, useEffect, useRef} from 'react';
 import {getCityData, getPlaylist} from '../../services/api.js';
-import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../context/Global.js';
 import CityInfo from '../../components/CityInfo';
 import Playlist from '../../components/Playlist';
 
+import search from '../../assets/icon-search.svg';
+
 export default function Home() {
-    const {data, setData, playlist, city, setCity, setPlaylist, setGenre} = useContext(GlobalContext)
+    const {data, setData, playlist, city, setCity, setPlaylist, setGenre, genre} = useContext(GlobalContext)
     const inputCity = useRef();
 
     useEffect(async () => {
-        if(data) {
+        if(data && data !== 'error') {
             let temp = data.main.temp
-            let playlist = ''
-
-            if (temp > 32) {
-                playlist = 1728093421
-                setGenre('Rock')
-            } 
-            else if ((temp < 32) && (temp > 24)){
-                playlist = 1310668095
-                setGenre('Pop')
-            }
-            else if((temp < 24) && (temp > 16)) {
-                playlist  = 6090626284
-                setGenre('Classica')
-            }
-            else if (temp < 16) {
-                playlist = 7399204504
-                setGenre('Lofi')
-            }
-
-            setPlaylist('')
-            const resp = await getPlaylist(playlist)
+            let current_genre = ''
+                if (temp > 32)
+                    current_genre = 'ROCK';
+                else if((temp < 32) && (temp > 24))
+                    current_genre = 'POP'
+                else if ((temp < 24) && (temp > 16))
+                    current_genre = 'SOUL_RNB';
+                else if (temp < 16)
+                    current_genre = 'ALTERNATIVE';
+            
+            setGenre(current_genre)
+            const resp = await getPlaylist(current_genre)
             setPlaylist(resp)
         }
 
     }, [data])
+
 
     const handleAdd = ({target}) => {
         setCity(target.value);
     }
 
     const handleData = async () => {
-        if(city) {
+        if(city && city !== 'error') {
             const response = await getCityData(city)
             setData(response);
             inputCity.current.focus();
@@ -53,7 +46,6 @@ export default function Home() {
     return (
         <div className="main">
             <div className="container">
-                <h1>Bem-vindo ao Weather Music</h1>
                 <div className="search">
                     <input
                         ref={inputCity} 
@@ -61,21 +53,24 @@ export default function Home() {
                         value={city} 
                         onChange={handleAdd}
                         onKeyPress={(e) => {
-                            if(e.charCode === 13) {
+                            if(e.key === 'Enter') {
                                 handleData()
                             }
                         }}
                         placeholder="Informe a cidade...">
                     </input>
-                    <button onClick={handleData}><i className="fas fa-search"></i></button>
+                    <button onClick={handleData}><img src={search}></img></button>
                 </div>
-                <Link to="/saved_playlists" className="savedPlaylists">Suas playlists</Link>
-                {data && 
-                    <CityInfo></CityInfo>
-                }
-                {playlist &&
-                    <Playlist></Playlist> 
-                }
+                <div className='content'>
+                    {data && data !== 'error' &&
+                        <CityInfo />
+                    }
+                    {data === 'error' &&
+                        <h1>Não encontramos essa cidade!</h1>}
+                    {playlist &&
+                        <Playlist></Playlist> 
+                    }
+                </div>
             </div>
         </div>
     )

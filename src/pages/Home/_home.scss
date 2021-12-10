@@ -4,12 +4,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        h1 {
-            color: rgb(13, 202, 101);
-            font-size: 3rem;
-            margin-top: 2rem;
-            text-align: center;
-        }
         .search {
             display: flex;
             align-items: center;
@@ -26,36 +20,49 @@
                 margin-right: .5rem;
                 color: rgb(32, 32, 32);
                 font-size: 1.6rem;
+                text-transform: capitalize;
             }
             button {
-                padding: .5rem 1rem;
+                padding: .5rem .8rem;
                 background-color: rgb(13, 202, 101);
                 border-radius: 5px;
                 outline: none;
                 border: none;
-                font-weight: 700;
                 font-size: 1.6rem;
+                color: #FFF;
                 cursor: pointer;
                 transition: .3s ease;
                 &:hover {
                     background-color: rgb(31, 218, 118);
                 }
+                img {
+                    height: 15px;
+                }
             }
         }
-        .savedPlaylists {
-            margin-top: 1rem;
-            color: #FFF;
-            font-weight: 700;
-            padding: .5rem 1rem;
-            background-color: rgb(13, 202, 101);
-            border: none;
-            border-radius: 5px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: all .3s ease;
-            &:hover {
-                background-color: rgb(31, 218, 118);
+        .content {
+            padding: 4rem 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            h1 {
+                font-size: 2rem;
             }
         }
     }
+    @media screen and (max-width: 880px) {
+        .container {
+            .content {
+                flex-direction: column;
+            }
+        }
+    } @media screen and (max-width: 480px) {
+        .container {
+            .content {
+                padding-top: 3rem;
+            }
+        }
+    }
+    
 }

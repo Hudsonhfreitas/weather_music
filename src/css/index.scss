@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @import '../pages/Home/home';
+@import '../components/Header/header';
 @import '../components/CityInfo/cityInfo';
 @import '../components/Playlist/playlist';
 @import '../pages/Saved_playlists/saved_playlists';
+@import '../components/Playlist_Item/playlist_item';
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -18,6 +20,18 @@ html, body {
     }
     @media screen and (max-width: 550px) {
         font-size: 50%;
+    }
+    &::-webkit-scrollbar {
+        width: 8px;
+      }
+    &::-webkit-scrollbar-track {
+        background: rgba(70, 70, 70, 1);
+        border-radius: 5px;
+        
+      }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(13, 202, 101);
+        border-radius: 5px;
     }
 }
 body {

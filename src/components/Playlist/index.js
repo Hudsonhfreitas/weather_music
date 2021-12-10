@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import { GlobalContext } from "../../context/Global"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import Playlist_Item from "../Playlist_Item";
 
 export default function Playlist() {
     const { playlist, genre, data, city } = useContext(GlobalContext)
@@ -13,13 +12,14 @@ export default function Playlist() {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        console.log(playlist)
         
         let newPlaylist = {
             date: date+' '+time,
             temperature: Math.round(data.main.temp),
             city: city,
             genre: genre,
-            playlist: playlist.tracks.data
+            playlist: playlist
         }
 
         savedPlaylists.push(newPlaylist)
@@ -32,25 +32,14 @@ export default function Playlist() {
             {genre === 'Rock' ? <p>Aqui vai uma playlist de <strong>{genre}</strong> para você curtir o clima!</p> : <p>Aqui vai uma playlist <strong>{genre}</strong> para você curtir o clima!</p>}
             { playlist &&
                 <>
-                <div className="save">
-                    <button onClick={handleLocal}>Salvar essa playlist</button>
-                </div>
-                <ul className="list">
-                    {playlist.tracks.data.map( item => (
-                        <li key={item.id}>
-                            <div className="item">
-                                <div className="cover">
-                                    <img src={item.album.cover}></img>
-                                </div>
-                                <div className="info">
-                                    <h4>{item.title}</h4>
-                                    <p>{item.artist.name}</p>
-                                </div>
-                            </div>
-                            <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>                        
-                        </li>
-                    ))}
-                </ul>
+                    <ul className="list">
+                        {playlist.map( item => (
+                           <Playlist_Item item={item}/>
+                        ))}
+                    </ul>
+                    <div className="save">
+                        <button onClick={handleLocal}>Salvar essa playlist</button>
+                    </div>
                 </>
             }
         </div>

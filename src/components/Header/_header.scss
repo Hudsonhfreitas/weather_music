@@ -1,0 +1,36 @@
+header {
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+        color: rgb(13, 202, 101);
+        font-size: 3rem;
+        text-align: center;
+        font-weight: 700;
+    }
+    a {
+        margin-top: 1rem;
+        font-weight: 700;
+        padding: .5rem 1rem;
+        color: rgb(13, 202, 101);
+        border: none;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: all .3s ease;
+        text-transform: uppercase;
+    }
+    .active {
+        text-decoration: underline;
+    }
+
+    @media screen and (max-width: 450px) {
+        height: 9rem;
+        flex-direction: column;
+        justify-content: center;
+        nav {
+            padding-top: 1rem;
+        }
+    }
+}

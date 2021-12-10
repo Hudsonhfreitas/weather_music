@@ -33,12 +33,17 @@ export default function SavedPlaylists() {
                         <li className="playlist-item">
                             <div className="title">
                                 <button onClick={handleExpand} id="expand"><FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon></button>
-                                <p>{item.date} {item.city} {item.temperature + '°C'} {item.genre}</p>
+                                <p>{item.date}</p>
                                 <button id="delete" onClick={() => handleDelete(item.date)}><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
                             </div>
-                            <ul>
+                            <ul className="list">
+                                <div className="info">
+                                    <p><strong>Cidade: </strong>{item.city}</p>
+                                    <p><strong>Temperatura: </strong>{item.temperature + '°C'}</p>
+                                    <p><strong>Gênero: </strong>{item.genre}</p>
+                                </div>
                                 {item && item.playlist.map(track => (
-                                    <li>{track.title} - {track.artist.name}</li>
+                                    <li>{track.title} - {track.subtitle}</li>
                                 ))}
                             </ul>
                         </li>

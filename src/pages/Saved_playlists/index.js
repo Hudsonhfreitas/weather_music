@@ -18,10 +18,10 @@ export default function SavedPlaylists() {
         localStorage.setItem('playlists',JSON.stringify(newPlaylist));
         toast.error('Excluído com sucesso!', {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: true,
+            pauseOnHover: false,
             draggable: true,
             progress: undefined,
         });

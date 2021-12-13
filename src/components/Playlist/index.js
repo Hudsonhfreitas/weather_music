@@ -26,7 +26,15 @@ export default function Playlist() {
 
         savedPlaylists.push(newPlaylist)
         localStorage.setItem('playlists', JSON.stringify(savedPlaylists))
-        toast.success("Playlist Salva com sucesso!")
+        toast.success("Playlist Salva com sucesso!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+        })
     }    
     
     return (

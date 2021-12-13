@@ -2,6 +2,8 @@ import { useContext } from "react"
 import { GlobalContext } from "../../context/Global"
 import Playlist_Item from "../Playlist_Item";
 
+import { toast, ToastContainer } from "react-toastify";
+
 export default function Playlist() {
     const { playlist, genre, data, city } = useContext(GlobalContext)
   
@@ -24,11 +26,12 @@ export default function Playlist() {
 
         savedPlaylists.push(newPlaylist)
         localStorage.setItem('playlists', JSON.stringify(savedPlaylists))
-        alert('Playlist salva com sucesso!')
+        toast.success("Playlist Salva com sucesso!")
     }    
     
     return (
         <div className="playlist">
+            <ToastContainer theme="colored" className="toast"/>
             {genre === 'Rock' ? <p>Aqui vai uma playlist de <strong>{genre}</strong> para você curtir o clima!</p> : <p>Aqui vai uma playlist <strong>{genre}</strong> para você curtir o clima!</p>}
             { playlist &&
                 <>

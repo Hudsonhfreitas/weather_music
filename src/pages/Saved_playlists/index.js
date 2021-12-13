@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react'; 
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function SavedPlaylists() {
     
@@ -15,7 +16,15 @@ export default function SavedPlaylists() {
         let newPlaylist = localPlaylists.filter( item => item.date != date);
         setLocalPlaylists(newPlaylist);
         localStorage.setItem('playlists',JSON.stringify(newPlaylist));
-        console.log('ola')
+        toast.error('Excluído com sucesso!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     function handleExpand(e) {       
@@ -26,6 +35,7 @@ export default function SavedPlaylists() {
     return (
         <div className="savedPlaylists">
             <div className="container">
+                <ToastContainer theme="colored" className="toast"/>
                 <h1>Playlists salvas</h1>
                  {localPlaylists.length === 0 && <span>Você não possui nenhuma playlist salva :(</span>}
                  <ul className="playlists">

@@ -3,8 +3,8 @@ import {getCityData, getPlaylist} from '../../services/api.js';
 import { GlobalContext } from '../../context/Global.js';
 import CityInfo from '../../components/CityInfo';
 import Playlist from '../../components/Playlist';
-
 import search from '../../assets/icon-search.svg';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
     const {data, setData, playlist, city, setCity, setPlaylist, setGenre} = useContext(GlobalContext)

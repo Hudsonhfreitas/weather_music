@@ -534,4 +534,10 @@ a {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.toast * {
+  font-size: 1.8rem;
+  color: #FFF;
+  font-weight: bold;
+}
 /*# sourceMappingURL=index.css.map */

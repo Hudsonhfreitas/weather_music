@@ -4,6 +4,7 @@ import Playlist_Item from "../Playlist_Item";
 
 export default function Playlist() {
     const { playlist, genre, data, city } = useContext(GlobalContext)
+  
 
     function handleLocal() {
         const localList =  localStorage.getItem('playlists')
@@ -12,7 +13,6 @@ export default function Playlist() {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        console.log(playlist)
         
         let newPlaylist = {
             date: date+' '+time,

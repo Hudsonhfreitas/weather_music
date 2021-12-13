@@ -7,7 +7,7 @@ import Playlist from '../../components/Playlist';
 import search from '../../assets/icon-search.svg';
 
 export default function Home() {
-    const {data, setData, playlist, city, setCity, setPlaylist, setGenre, genre} = useContext(GlobalContext)
+    const {data, setData, playlist, city, setCity, setPlaylist, setGenre} = useContext(GlobalContext)
     const inputCity = useRef();
 
     useEffect(async () => {
@@ -36,6 +36,7 @@ export default function Home() {
     }
 
     const handleData = async () => {
+        setPlaylist(null)
         if(city && city !== 'error') {
             const response = await getCityData(city)
             setData(response);

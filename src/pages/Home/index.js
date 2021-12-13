@@ -10,25 +10,29 @@ export default function Home() {
     const {data, setData, playlist, city, setCity, setPlaylist, setGenre} = useContext(GlobalContext)
     const inputCity = useRef();
 
-    useEffect(async () => {
-        if(data && data !== 'error') {
-            let temp = data.main.temp
-            let current_genre = ''
-                if (temp > 32)
-                    current_genre = 'ROCK';
-                else if((temp < 32) && (temp > 24))
-                    current_genre = 'POP'
-                else if ((temp < 24) && (temp > 16))
-                    current_genre = 'SOUL_RNB';
-                else if (temp < 16)
-                    current_genre = 'ALTERNATIVE';
-            
-            setGenre(current_genre)
-            const resp = await getPlaylist(current_genre)
-            setPlaylist(resp)
+    useEffect(() => {
+        async function getData () {
+            if(data && data !== 'error') {
+                let temp = data.main.temp
+                let current_genre = ''
+                    if (temp > 32)
+                        current_genre = 'ROCK';
+                    else if((temp < 32) && (temp > 24))
+                        current_genre = 'POP'
+                    else if ((temp < 24) && (temp > 16))
+                        current_genre = 'SOUL_RNB';
+                    else if (temp < 16)
+                        current_genre = 'ALTERNATIVE';
+                
+                setGenre(current_genre)
+                const resp = await getPlaylist(current_genre)
+                setPlaylist(resp)
+            }
         }
+        
+        getData();
 
-    }, [data])
+    }, [data, setGenre, setPlaylist])
 
 
     const handleAdd = ({target}) => {
@@ -60,7 +64,7 @@ export default function Home() {
                         }}
                         placeholder="Informe a cidade...">
                     </input>
-                    <button onClick={handleData}><img src={search}></img></button>
+                    <button onClick={handleData}><img src={search} alt="search"></img></button>
                 </div>
                 <div className='content'>
                     {data && data !== 'error' &&

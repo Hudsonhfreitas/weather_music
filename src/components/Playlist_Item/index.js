@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Playlist_Item({item}) {
+export default function PlaylistItem({item}) {
     return (
     <li className='playlist_item' key={item.id}>
         <div className="item">

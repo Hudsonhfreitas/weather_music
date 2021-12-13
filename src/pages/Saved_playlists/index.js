@@ -12,8 +12,8 @@ export default function SavedPlaylists() {
         setLocalPlaylists(() => JSON.parse(local) || [])
     }, []);
 
-    function handleDelete(date) {
-        let newPlaylist = localPlaylists.filter( item => item.date != date);
+    function handleDelete(id) {
+        let newPlaylist = localPlaylists.filter( item => item.id !== id);
         setLocalPlaylists(newPlaylist);
         localStorage.setItem('playlists',JSON.stringify(newPlaylist));
         toast.error('Excluído com sucesso!', {
@@ -40,11 +40,11 @@ export default function SavedPlaylists() {
                  {localPlaylists.length === 0 && <span>Você não possui nenhuma playlist salva :(</span>}
                  <ul className="playlists">
                     {localPlaylists && localPlaylists.map(item => (
-                        <li className="playlist-item">
+                        <li key={item.id} className="playlist-item">
                             <div className="title">
                                 <button onClick={handleExpand} id="expand"><FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon></button>
                                 <p>{item.date}</p>
-                                <button id="delete" onClick={() => handleDelete(item.date)}><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
+                                <button id="delete" onClick={() => handleDelete(item.id)}><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
                             </div>
                             <ul className="list">
                                 <div className="info">

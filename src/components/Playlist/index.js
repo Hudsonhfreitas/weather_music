@@ -1,13 +1,13 @@
 import { useContext } from "react"
 import { GlobalContext } from "../../context/Global"
-import Playlist_Item from "../Playlist_Item";
+import PlaylistItem from "../Playlist_Item";
+import { v4 as uuid_v4 } from "uuid";
 
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Playlist() {
     const { playlist, genre, data, city } = useContext(GlobalContext)
   
-
     function handleLocal() {
         const localList =  localStorage.getItem('playlists')
 
@@ -17,6 +17,7 @@ export default function Playlist() {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         
         let newPlaylist = {
+            id: uuid_v4(),
             date: date+' '+time,
             temperature: Math.round(data.main.temp),
             city: city,
@@ -45,7 +46,7 @@ export default function Playlist() {
                 <>
                     <ul className="list">
                         {playlist.map( item => (
-                           <Playlist_Item key={item.id} item={item}/>
+                           <PlaylistItem key={item.id} item={item}/>
                         ))}
                     </ul>
                     <div className="save">
